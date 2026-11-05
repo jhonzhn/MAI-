@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f1">
+  <meta name="description" content="Un pequeño jardín hecho con cariño, para ti.">
+  <title>Un jardín para ti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="garden" aria-live="polite">
+    <div class="topline"><span class="brand"><span class="brand-dot">✿</span> un detalle para ti</span><button class="sound" id="sound" aria-pressed="false"><span id="soundIcon">♫</span><span id="soundLabel">Activar música</span></button></div>
+    <div class="progress" aria-label="Progreso"><span id="progressFill"></span></div>
+    <section class="scene active" data-scene="0">
+      <div class="eyebrow">hecho con mucho cariño</div><div class="art art-meadow" aria-hidden="true"><span class="sun">☼</span><span class="floating f1">✿</span><span class="floating f2">✽</span><span class="floating f3">❋</span><span class="flower big">🌼</span><span class="flower small one">🌷</span><span class="flower small two">🌻</span><span class="hill"></span></div>
+      <h1>Un pequeño jardín<br>para ti</h1><p class="copy">Hice este rinconcito pensando en ti.<br>Recórrelo a tu ritmo, y quédate con lo que te haga bien.</p>
+      <button class="primary next">Entrar al jardín <span>→</span></button><p class="hint">un detalle pequeño, con mucho cariño</p>
+    </section>
+    <section class="scene" data-scene="1">
+      <div class="eyebrow">01 · un poco de luz</div><div class="bouquet bouquet-sun" aria-hidden="true"><span>🌻</span><span>🌼</span><span>🌻</span><span>🌼</span><span>🌻</span><i>✿</i><i>✿</i></div>
+      <h2>Como estas flores,<br>tú también haces<br>más bonito el día.</h2><p class="copy">Ojalá hoy encuentres una pequeña cosa que te saque una sonrisa. Y si no, también está bien.</p>
+      <div class="nav"><button class="text-button back">← Volver</button><button class="primary next">Seguir <span>→</span></button></div>
+    </section>
+    <section class="scene" data-scene="2">
+      <div class="eyebrow">02 · un lugar tranquilo</div><div class="bouquet bouquet-calm" aria-hidden="true"><span>🪻</span><span>🤍</span><span>🪻</span><span>🌿</span><span>🤍</span><span>🌿</span></div>
+      <h2>No tienes que<br>estar bien todo<br>el tiempo.</h2><p class="copy">Puedes sentir lo que sientes, a tu manera y a tu tiempo. No tienes que cargar con todo en silencio.</p>
+      <div class="note"><span>♡</span> Si quieres hablar, aquí estoy. Si prefieres compañía en silencio, también.</div>
+      <div class="nav"><button class="text-button back">← Volver</button><button class="primary next">Seguir <span>→</span></button></div>
+    </section>
+    <section class="scene" data-scene="3">
+      <div class="eyebrow">03 · cosas que se quedan</div><div class="memory-art" aria-hidden="true"><span>☁</span><div class="arch"><div class="arch-inner">🌷<br>🌿<br>🌼</div></div><span>✧</span></div>
+      <h2>El cariño que<br>nos dan deja<br>huellitas de luz.</h2><p class="copy">Hay personas y momentos que siguen siendo parte de nosotros. Si recordarlo te hace bien, puedes guardar cerca lo bonito que compartieron.</p>
+      <div class="nav"><button class="text-button back">← Volver</button><button class="primary next">Una última cosa <span>→</span></button></div>
+    </section>
+    <section class="scene" data-scene="4">
+      <div class="eyebrow">para cerrar, un abrazo</div><div class="heart-art" aria-hidden="true"><span>♡</span><i>✿</i><i>✧</i><i>❋</i></div>
+      <h2>No puedo quitar<br>lo que duele, pero<br>puedo estar aquí.</h2><p class="copy">Me importas mucho. Para los días ligeros y para los días difíciles. Gracias por dejarme acompañarte.</p>
+      <div class="signature">con mucho cariño <span>♡</span></div><div class="nav"><button class="text-button back">← Volver</button><button class="primary" id="restart">Volver al inicio <span>↺</span></button></div>
+    </section>
+    <footer><span>hecho con cariño, para ti</span><span id="pageCount">01 / 05</span></footer>
+  </main>
+  <audio id="music" loop preload="none"><source src="music.mp3" type="audio/mpeg"></audio>
+</body>
+</html>

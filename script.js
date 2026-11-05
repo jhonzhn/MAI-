@@ -1,1 +1,51 @@
-const scenes=[...document.querySelectorAll('.scene')];const fill=document.querySelector('#progressFill');const count=document.querySelector('#pageCount');let current=0;function show(index){current=(index+scenes.length)%scenes.length;scenes.forEach((scene,i)=>{scene.classList.toggle('active',i===current);scene.setAttribute('aria-hidden',i!==current)});fill.style.width=`${((current+1)/scenes.length)*100}%`;count.textContent=`${String(current+1).padStart(2,'0')} / ${String(scenes.length).padStart(2,'0')}`;window.scrollTo({top:0,behavior:'smooth'})}document.querySelectorAll('.next').forEach(button=>button.addEventListener('click',()=>show(current+1)));document.querySelectorAll('.back').forEach(button=>button.addEventListener('click',()=>show(current-1)));document.querySelector('#restart').addEventListener('click',()=>show(0));const music=document.querySelector('#music');const sound=document.querySelector('#sound');sound.addEventListener('click',async()=>{if(music.paused){try{await music.play();sound.setAttribute('aria-pressed','true');document.querySelector('#soundIcon').textContent='♫';document.querySelector('#soundLabel').textContent='Pausar música'}catch{document.querySelector('#soundLabel').textContent='Añade music.mp3'}}else{music.pause();sound.setAttribute('aria-pressed','false');document.querySelector('#soundLabel').textContent='Activar música'}});show(0);
+const scenes = [...document.querySelectorAll('.scene')];
+const progress = document.querySelector('#progressFill');
+const pageCount = document.querySelector('#pageCount');
+const music = document.querySelector('#music');
+const soundButton = document.querySelector('#sound');
+const soundIcon = document.querySelector('#soundIcon');
+const soundLabel = document.querySelector('#soundLabel');
+let currentScene = 0;
+
+function showScene(index) {
+  currentScene = (index + scenes.length) % scenes.length;
+
+  scenes.forEach((scene, sceneIndex) => {
+    const isActive = sceneIndex === currentScene;
+    scene.classList.toggle('active', isActive);
+    scene.setAttribute('aria-hidden', String(!isActive));
+  });
+
+  progress.style.width = `${((currentScene + 1) / scenes.length) * 100}%`;
+  pageCount.textContent = `${String(currentScene + 1).padStart(2, '0')} / ${String(scenes.length).padStart(2, '0')}`;
+}
+
+document.querySelectorAll('.next').forEach((button) => {
+  button.addEventListener('click', () => showScene(currentScene + 1));
+});
+
+document.querySelectorAll('.back').forEach((button) => {
+  button.addEventListener('click', () => showScene(currentScene - 1));
+});
+
+document.querySelector('#restart').addEventListener('click', () => showScene(0));
+
+soundButton.addEventListener('click', async () => {
+  if (music.paused) {
+    try {
+      await music.play();
+      soundButton.setAttribute('aria-pressed', 'true');
+      soundIcon.textContent = '♫';
+      soundLabel.textContent = 'Pausar música';
+    } catch {
+      soundLabel.textContent = 'Añade music.mp3';
+    }
+    return;
+  }
+
+  music.pause();
+  soundButton.setAttribute('aria-pressed', 'false');
+  soundLabel.textContent = 'Activar música';
+});
+
+showScene(0);

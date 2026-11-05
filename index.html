@@ -1,114 +1,102 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#090b18">
-    <meta name="description" content="Un pequeño jardín hecho con cariño, para ti.">
-    <title>Un jardín para ti</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-  </head>
-  <body>
-    <main class="garden" aria-live="polite">
-      <div class="topline">
-        <span class="brand"><span class="brand-dot">✿</span> un detalle para ti</span>
-        <button class="sound" id="sound" aria-pressed="false">
-          <span id="soundIcon">♫</span>
-          <span id="soundLabel">Activar música</span>
-        </button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Un pequeño jardín nocturno, hecho especialmente para ti.">
+  <title>Un jardín para ti ✿</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="night-sky" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div id="petals" aria-hidden="true"></div>
+
+  <audio id="music" loop preload="none"><source src="music.mp3" type="audio/mpeg"></audio>
+
+  <header class="site-header">
+    <button class="wordmark" id="homeButton" aria-label="Volver al inicio"><span>✿</span> un jardín para ti</button>
+    <div class="header-actions">
+      <div class="page-count" id="pageCount">01 <span>/ 05</span></div>
+      <button class="music-button" id="musicButton" aria-pressed="false"><span class="music-icon">♫</span><span id="musicLabel">pon música</span></button>
+    </div>
+  </header>
+  <div class="progress-track"><i id="progressBar"></i></div>
+
+  <main>
+    <section class="page active" id="page1" aria-hidden="false">
+      <div class="page-content hero-content">
+        <div class="hero-flower" aria-hidden="true">🌼</div>
+        <div class="eyebrow">UN RINCONCITO HECHO PARA TI</div>
+        <h1>Hoy quería regalarte<br><span>un jardín...</span></h1>
+        <p class="hero-text">No uno cualquiera. Uno donde puedas respirar despacio, mirar las flores y recordar cuánto cariño te tengo.</p>
+        <button class="next-button" data-next>Tengo algo para ti <span>→</span></button>
+        <div class="little-note">hecho con mucho, mucho cariño</div>
       </div>
+      <div class="hero-orbit orbit-one" aria-hidden="true">✧</div><div class="hero-orbit orbit-two" aria-hidden="true">✦</div>
+    </section>
 
-      <div class="progress" aria-label="Progreso">
-        <span id="progressFill"></span>
+    <section class="page" id="page2" aria-hidden="true">
+      <div class="page-content letter-layout">
+        <div class="scene-art letter-bouquet" aria-hidden="true"><div class="stem stem-a"></div><div class="stem stem-b"></div><div class="stem stem-c"></div><div class="paper-wrap"></div><span class="bloom bloom-a">🌻</span><span class="bloom bloom-b">🌼</span><span class="bloom bloom-c">🌷</span><span class="leaf leaf-a">❧</span><span class="leaf leaf-b">❧</span></div>
+        <div class="letter-copy">
+          <div class="eyebrow">UNA NOTITA PARA TI</div>
+          <h2>Déjame decirte<br>algo bonito...</h2>
+          <article class="letter-card">
+            <p>Quería hacerte un lugarcito al que pudieras venir cuando necesites un respiro.</p>
+            <p>No tienes que contestar nada ni sentirte de una manera especial. Solo quería que supieras que pienso en ti y que me importas muchísimo.</p>
+            <p class="handwritten">Aquí estoy, cerquita, a tu ritmo. <span>♡</span></p>
+          </article>
+          <button class="next-button" data-next>Quiero enseñarte el jardín <span>→</span></button>
+        </div>
       </div>
+    </section>
 
-      <section class="scene active" data-scene="0">
-        <div class="eyebrow">hecho con mucho cariño</div>
-        <div class="art art-meadow" aria-hidden="true">
-          <span class="sun">☼</span>
-          <span class="floating f1">✿</span>
-          <span class="floating f2">✽</span>
-          <span class="floating f3">❋</span>
-          <span class="flower big">🌼</span>
-          <span class="flower small one">🌷</span>
-          <span class="flower small two">🌻</span>
-          <span class="hill"></span>
+    <section class="page" id="page3" aria-hidden="true">
+      <div class="page-content garden-scene">
+        <div class="eyebrow">FLORES PARA ALEGRARTE EL DÍA</div>
+        <h2>Pequeñas cosas<br>que me encantan de ti</h2>
+        <p class="page-intro">Toca una flor. Cada una guarda unas palabras que quería regalarte.</p>
+        <div class="flower-cards">
+          <button class="flower-card" data-note="smile"><span class="flower-emoji">🌻</span><strong>Tu sonrisa</strong><small>esa luz tan tuya</small></button>
+          <button class="flower-card" data-note="being"><span class="flower-emoji">🌷</span><strong>Tu forma de ser</strong><small>única, así como eres</small></button>
+          <button class="flower-card" data-note="heart"><span class="flower-emoji">🌼</span><strong>Tu corazón</strong><small>lo bonito que das</small></button>
+          <button class="flower-card" data-note="details"><span class="flower-emoji">🪻</span><strong>Tus detalles</strong><small>hasta los pequeñitos</small></button>
         </div>
-        <h1>Un pequeño jardín<br>para ti</h1>
-        <p class="copy">Hice este rinconcito pensando en ti.<br>Recórrelo a tu ritmo, y quédate con lo que te haga bien.</p>
-        <button class="primary next">Entrar al jardín <span>→</span></button>
-        <p class="hint">un detalle pequeño, con mucho cariño</p>
-      </section>
+        <button class="next-button" data-next>Un lugar tranquilo <span>→</span></button>
+      </div>
+    </section>
 
-      <section class="scene" data-scene="1">
-        <div class="eyebrow">01 · un poco de luz</div>
-        <div class="bouquet bouquet-sun" aria-hidden="true">
-          <span>🌻</span><span>🌼</span><span>🌻</span><span>🌼</span><span>🌻</span>
-          <i>✿</i><i>✿</i>
-        </div>
-        <h2>Como estas flores,<br>tú también haces<br>más bonito el día.</h2>
-        <p class="copy">Ojalá hoy encuentres una pequeña cosa que te saque una sonrisa. Y si no, también está bien.</p>
-        <div class="nav">
-          <button class="text-button back">← Volver</button>
-          <button class="primary next">Seguir <span>→</span></button>
-        </div>
-      </section>
+    <section class="page" id="page4" aria-hidden="true">
+      <div class="page-content quiet-layout">
+        <div class="quiet-art" aria-hidden="true"><div class="quiet-moon"></div><div class="quiet-hill"></div><span class="quiet-flower qf-one">🪻</span><span class="quiet-flower qf-two">🌿</span><span class="quiet-flower qf-three">🤍</span><span class="quiet-star qs-one">✧</span><span class="quiet-star qs-two">✦</span></div>
+        <div class="quiet-copy"><div class="eyebrow">PUEDES QUEDARTE UN MOMENTO</div><h2>No tienes que<br>estar bien todo<br>el tiempo.</h2><p>Hay días suaves y días pesados. Puedes sentir lo que sientes, sin apurarte y sin tener que explicarlo todo.</p><div class="soft-note"><span>♡</span><p>Si quieres hablar, te escucho.<br>Si prefieres silencio, te acompaño.</p></div><button class="next-button" data-next>Una última cosita <span>→</span></button></div>
+      </div>
+    </section>
 
-      <section class="scene" data-scene="2">
-        <div class="eyebrow">02 · un lugar tranquilo</div>
-        <div class="bouquet bouquet-calm" aria-hidden="true">
-          <span>🪻</span><span>🤍</span><span>🪻</span><span>🌿</span><span>🤍</span><span>🌿</span>
-        </div>
-        <h2>No tienes que<br>estar bien todo<br>el tiempo.</h2>
-        <p class="copy">Puedes sentir lo que sientes, a tu manera y a tu tiempo. No tienes que cargar con todo en silencio.</p>
-        <div class="note"><span>♡</span> Si quieres hablar, aquí estoy. Si prefieres compañía en silencio, también.</div>
-        <div class="nav">
-          <button class="text-button back">← Volver</button>
-          <button class="primary next">Seguir <span>→</span></button>
-        </div>
-      </section>
+    <section class="page" id="page5" aria-hidden="true">
+      <div class="page-content final-layout">
+        <div class="final-bloom" aria-hidden="true"><div class="glow"></div><span>♡</span><i>✿</i><b>✧</b><em>❋</em></div>
+        <div class="final-copy"><div class="eyebrow">Y PARA CERRAR, UN ABRAZO</div><h2>El cariño bonito<br>se queda <span>floreciendo.</span></h2><article class="final-letter"><p>A veces las personas que queremos dejan en nosotros cosas que siguen creciendo: una frase, una risa, una forma de mirar el mundo.</p><p>Si hoy extrañas a alguien, ojalá los recuerdos amables te hagan compañía cuando tú quieras volver a ellos.</p><p class="handwritten">Y para ti: no estás sola. Me importas mucho. <span>♡</span></p></article><button class="home-button" id="restartButton">↶ Volver a pasear por el jardín</button></div>
+      </div>
+    </section>
+  </main>
 
-      <section class="scene" data-scene="3">
-        <div class="eyebrow">03 · cosas que se quedan</div>
-        <div class="memory-art" aria-hidden="true">
-          <span>☁</span>
-          <div class="arch"><div class="arch-inner">🌷<br>🌿<br>🌼</div></div>
-          <span>✧</span>
-        </div>
-        <h2>El cariño que<br>nos dan deja<br>huellitas de luz.</h2>
-        <p class="copy">Hay personas y momentos que siguen siendo parte de nosotros. Si recordarlo te hace bien, puedes guardar cerca lo bonito que compartieron.</p>
-        <div class="nav">
-          <button class="text-button back">← Volver</button>
-          <button class="primary next">Una última cosa <span>→</span></button>
-        </div>
-      </section>
+  <footer class="site-footer"><span>un detalle pequeño, con todo mi cariño</span><div class="page-dots" id="pageDots" aria-hidden="true"></div></footer>
 
-      <section class="scene" data-scene="4">
-        <div class="eyebrow">para cerrar, un abrazo</div>
-        <div class="heart-art" aria-hidden="true">
-          <span>♡</span><i>✿</i><i>✧</i><i>❋</i>
-        </div>
-        <h2>No puedo quitar<br>lo que duele, pero<br>puedo estar aquí.</h2>
-        <p class="copy">Me importas mucho. Para los días ligeros y para los días difíciles. Gracias por dejarme acompañarte.</p>
-        <div class="signature">con mucho cariño <span>♡</span></div>
-        <div class="nav">
-          <button class="text-button back">← Volver</button>
-          <button class="primary" id="restart">Volver al inicio <span>↺</span></button>
-        </div>
-      </section>
-
-      <footer>
-        <span>hecho con cariño, para ti</span>
-        <span id="pageCount">01 / 05</span>
-      </footer>
-    </main>
-
-    <audio id="music" loop preload="none">
-      <source src="music.mp3" type="audio/mpeg">
-    </audio>
-  </body>
+  <div class="modal" id="noteModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModal" aria-label="Cerrar">×</button>
+      <div class="modal-flower" id="modalFlower">🌻</div>
+      <div class="eyebrow">UNA FLORCITA PARA TI</div>
+      <h2 id="modalTitle">Tu sonrisa</h2>
+      <p id="modalText"></p>
+      <button class="modal-ok" id="modalOkay">Guardar en el corazón ♡</button>
+    </div>
+  </div>
+</body>
 </html>

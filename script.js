@@ -16,7 +16,7 @@ const mensajes = [
   {
     etiqueta: "UN DETALLE PARA TI",
     titulo: "Un jardín para ti 💜",
-    texto: "Hice este pequeño jardín pensando en ti, para regalarte un ratito de calma y algo bonito que mirar. Eres linda y tienes muchas cosas buenas… entre ellas, un repertorio de malas palabras que merece su propio diccionario 😂. Tenía que reconocer ese talento también."
+    texto: "Hice este pequeño jardín para ti, para regalarte un ratito de calma y algo bonito que mirar. Eres linda y tienes muchas cosas buenas… entre ellas, un repertorio de malas palabras que merece su propio diccionario jaja. Tenía que reconocer ese talento también."
   },
   {
     etiqueta: "LO QUE QUERÍA DECIRTE",
@@ -26,12 +26,12 @@ const mensajes = [
   {
     etiqueta: "UN RECORDATORIO",
     titulo: "Por si hoy lo necesitas ✨",
-    texto: "Hay muchas cosas bonitas en ti: tu forma de ser, el cariño que eres capaz de dar y esa manera tan tuya de hacer las cosas. A veces cuesta reconocer lo bueno de una misma. Ojalá estas flores te ayuden a recordarlo un poquito."
+    texto: "Hay muchas cosas bonitas en ti: tu forma de ser, el cariño que eres capaz de dar y esa manera tan tuya de hacer las cosas. A veces cuesta reconocer lo bueno de una misma. Ojalá estas flores te ayuden a recordarlo un poquito Boba."
   },
   {
     etiqueta: "CON CARIÑO",
     titulo: "Aquí estoy 🌸",
-    texto: "Si necesitas hablar, distraerte o simplemente tener compañía, puedes contar conmigo. No necesitas estar alegre ni saber qué decir para escribirme. Y hoy intenta tratarte bonito y descansar un poco… hazme caso por una vez, para variar 😂."
+    texto: "Si necesitas hablar, distraerte o simplemente tener compañía, puedes contar conmigo. No necesitas estar alegre ni saber qué decir para escribirme. Y hoy intenta descansar un poco… y hazme caso por una vez."
   }
 ];
 

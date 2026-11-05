@@ -9,6 +9,7 @@
   <script src="script.js" defer></script>
 </head>
 <body>
+  <audio id="musicaFondo" src="musica.mp3" preload="none" loop></audio>
   <main>
     <!-- La portada conserva la flor de la base, quieta y centrada. -->
     <section id="inicio" class="pantalla activa" aria-label="Una flor para ti">
@@ -45,32 +46,32 @@
 
     <!-- Cuatro flores con mensajes entre un jardín de flores decorativas. -->
     <section id="regalo" class="pantalla" aria-label="Jardín de mensajes" aria-hidden="true" inert>
+      <div id="estrellas" class="cielo-estrellado" aria-hidden="true"></div>
       <div class="luz-jardin" aria-hidden="true"></div>
-      <p id="invitacion" class="invitacion" tabindex="-1">
-        Cada flor guarda algo para ti.
-        <span>Toca una de las cuatro flores luminosas</span>
-      </p>
+      <p id="invitacion" class="invitacion" tabindex="-1">Un jardín hecho para ti Mai</p>
 
       <div id="ramo" class="jardin">
-        <svg id="tallosJardin" class="tallos-jardin" viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true"></svg>
-        <div id="floresDecorativas" class="flores-decorativas" aria-hidden="true"></div>
+        <div class="vegetacion">
+          <svg id="tallosJardin" class="tallos-jardin" viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <div id="floresDecorativas" class="flores-decorativas" aria-hidden="true"></div>
 
-        <button class="flor-principal flor-uno" data-mensaje="0" aria-label="Abrir mensaje: un detalle para ti" aria-haspopup="dialog">
-          <span class="flor-visual" aria-hidden="true"></span>
-          <span class="flor-nombre">Un detalle</span>
-        </button>
-        <button class="flor-principal flor-dos" data-mensaje="1" aria-label="Abrir mensaje: lo que quería decirte" aria-haspopup="dialog">
-          <span class="flor-visual" aria-hidden="true"></span>
-          <span class="flor-nombre">Para ti</span>
-        </button>
-        <button class="flor-principal flor-tres" data-mensaje="2" aria-label="Abrir mensaje: un deseo" aria-haspopup="dialog">
-          <span class="flor-visual" aria-hidden="true"></span>
-          <span class="flor-nombre">Un deseo</span>
-        </button>
-        <button class="flor-principal flor-cuatro" data-mensaje="3" aria-label="Abrir mensaje: con cariño" aria-haspopup="dialog">
-          <span class="flor-visual" aria-hidden="true"></span>
-          <span class="flor-nombre">Con cariño</span>
-        </button>
+          <button class="flor-principal flor-uno" data-mensaje="0" aria-label="Abrir mensaje: un detalle para ti" aria-haspopup="dialog">
+            <span class="flor-visual" aria-hidden="true"></span>
+            <span class="flor-nombre">Para Tu</span>
+          </button>
+          <button class="flor-principal flor-dos" data-mensaje="1" aria-label="Abrir mensaje: lo que quería decirte" aria-haspopup="dialog">
+            <span class="flor-visual" aria-hidden="true"></span>
+            <span class="flor-nombre">Ritmo</span>
+          </button>
+          <button class="flor-principal flor-tres" data-mensaje="2" aria-label="Abrir mensaje: un deseo" aria-haspopup="dialog">
+            <span class="flor-visual" aria-hidden="true"></span>
+            <span class="flor-nombre">Dias</span>
+          </button>
+          <button class="flor-principal flor-cuatro" data-mensaje="3" aria-label="Abrir mensaje: con cariño" aria-haspopup="dialog">
+            <span class="flor-visual" aria-hidden="true"></span>
+            <span class="flor-nombre">Aqui</span>
+          </button>
+        </div>
         <div class="suelo" aria-hidden="true"></div>
       </div>
       <button id="volver" class="volver">↶ Volver a la flor</button>

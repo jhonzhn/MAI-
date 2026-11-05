@@ -1,6 +1,7 @@
 const inicio = document.getElementById("inicio");
 const regalo = document.getElementById("regalo");
 const florInicial = document.getElementById("florInicial");
+const musicaFondo = document.getElementById("musicaFondo");
 const ramo = document.getElementById("ramo");
 const volver = document.getElementById("volver");
 const floresPrincipales = [...document.querySelectorAll(".flor-principal")];
@@ -10,27 +11,27 @@ const movimientoReducido = window.matchMedia("(prefers-reduced-motion: reduce)")
 let animando = false;
 let florAbierta = null;
 
-// Las cuatro notas corresponden a los mensajes de la base original.
+// Un mensaje de apoyo para cada una de las cuatro flores.
 const mensajes = [
   {
     etiqueta: "UN DETALLE PARA TI",
-    titulo: "Hay personas que hacen más bonito el mundo.",
-    texto: "Y luego estás tú, que haces que hasta los días comunes tengan algo especial."
+    titulo: "Un jardín para ti 💜",
+    texto: "Hice este pequeño jardín pensando en ti, para regalarte un ratito de calma y algo bonito que mirar. Eres linda y tienes muchas cosas buenas… entre ellas, un repertorio de malas palabras que merece su propio diccionario 😂. Tenía que reconocer ese talento también."
   },
   {
     etiqueta: "LO QUE QUERÍA DECIRTE",
-    titulo: "Eres alguien muy especial.",
-    texto: "No hacen falta grandes palabras para recordártelo. Quería que este pequeño jardín te lo dijera por mí."
+    titulo: "A tu ritmo 🌷",
+    texto: "No tienes que poder con todo ni estar siempre de buen ánimo. Un día difícil no borra tus cualidades ni las cosas bonitas que hay en ti. Puedes descansar y tomarte tu tiempo; no tienes que demostrar nada para merecer cariño."
   },
   {
-    etiqueta: "UN DESEO",
-    titulo: "Cosas bonitas para ti.",
-    texto: "Que nunca te falten motivos para sonreír, sueños por cumplir y cariño que te abrace."
+    etiqueta: "UN RECORDATORIO",
+    titulo: "Por si hoy lo necesitas ✨",
+    texto: "Hay muchas cosas bonitas en ti: tu forma de ser, el cariño que eres capaz de dar y esa manera tan tuya de hacer las cosas. A veces cuesta reconocer lo bueno de una misma. Ojalá estas flores te ayuden a recordarlo un poquito."
   },
   {
     etiqueta: "CON CARIÑO",
-    titulo: "Un detalle pequeñito.",
-    texto: "Hay detalles pequeños que pueden guardar sentimientos enormes. Este lo hice pensando en ti."
+    titulo: "Aquí estoy 🌸",
+    texto: "Si necesitas hablar, distraerte o simplemente tener compañía, puedes contar conmigo. No necesitas estar alegre ni saber qué decir para escribirme. Y hoy intenta tratarte bonito y descansar un poco… hazme caso por una vez, para variar 😂."
   }
 ];
 
@@ -73,6 +74,23 @@ const decorativas = Array.from({ length: 30 }, (_, indice) => ({
   espera: (indice % 6) * .09,
   opacidad: .36 + (indice % 4) * .13
 }));
+
+// Se crean una sola vez; cada punto tiene su propio ritmo de brillo.
+function prepararEstrellas() {
+  const cielo = document.getElementById("estrellas");
+
+  for (let indice = 0; indice < 240; indice++) {
+    const estrella = document.createElement("span");
+    estrella.className = "estrella";
+    estrella.style.setProperty("--x", `${1 + Math.random() * 98}%`);
+    estrella.style.setProperty("--y", `${2 + Math.random() * 94}%`);
+    estrella.style.setProperty("--tamano", `${.6 + Math.random() * 1.2}px`);
+    estrella.style.setProperty("--brillo", (.25 + Math.random() * .55).toFixed(2));
+    estrella.style.setProperty("--duracion", `${4 + Math.random() * 5}s`);
+    estrella.style.setProperty("--desfase", `${-Math.random() * 9}s`);
+    cielo.append(estrella);
+  }
+}
 
 function prepararJardin() {
   const fondo = document.getElementById("floresDecorativas");
@@ -239,9 +257,18 @@ modal.addEventListener("click", evento => {
 });
 modal.addEventListener("close", () => florAbierta?.focus({ preventScroll: true }));
 
-florInicial.addEventListener("click", () => cambiarPantalla(regalo));
+florInicial.addEventListener("click", () => {
+  // Se inicia directamente con el toque para permitir la reproducción en el celular.
+  if (musicaFondo.paused) {
+    musicaFondo.play().catch(() => {
+      console.warn("No se pudo iniciar la música. Puedes intentarlo al volver a pulsar la flor.");
+    });
+  }
+  cambiarPantalla(regalo);
+});
 volver.addEventListener("click", () => cambiarPantalla(inicio));
 
+prepararEstrellas();
 prepararJardin();
 let ajustePendiente;
 new ResizeObserver(() => {

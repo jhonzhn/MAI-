@@ -71,6 +71,33 @@ button:focus-visible { outline: 2px solid #ead5ff; outline-offset: 5px; }
 }
 
 /* Jardín: tallos del fondo, flores pequeñas y cuatro flores protagonistas. */
+.cielo-estrellado {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(#000 65%, transparent 98%);
+}
+.estrella {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--tamano);
+  height: var(--tamano);
+  border-radius: 50%;
+  background: #e9ddff;
+  box-shadow: 0 0 3px #cbb4ff80;
+  opacity: var(--brillo);
+  animation: titilar-estrella var(--duracion) var(--desfase) ease-in-out infinite;
+  animation-play-state: paused;
+}
+.pantalla.activa .estrella { animation-play-state: running; }
+@keyframes titilar-estrella {
+  0%, 100% { opacity: .04; }
+  50% { opacity: var(--brillo); }
+}
+
 .luz-jardin {
   position: absolute;
   inset: 18% 5% 0;
@@ -97,6 +124,7 @@ button:focus-visible { outline: 2px solid #ead5ff; outline-offset: 5px; }
 }
 .jardin {
   position: absolute;
+  z-index: 1;
   bottom: 0;
   width: min(100%, 1180px);
   height: 79svh;
@@ -104,6 +132,36 @@ button:focus-visible { outline: 2px solid #ead5ff; outline-offset: 5px; }
 }
 .tallos-jardin, .flores-decorativas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .tallos-jardin { overflow: visible; }
+
+/* La brisa mueve la vegetación desde el suelo, manteniendo unidos los tallos. */
+.vegetacion {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  animation: brisa-jardin 9s -2s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.flor-visual svg,
+.flor-decorativa svg {
+  transform-origin: 50% 81%;
+  animation: brisa-petalos var(--ritmo-brisa, 6s) var(--fase-brisa, -1s) ease-in-out infinite;
+  animation-play-state: paused;
+}
+.flor-dos, .flor-decorativa:nth-child(3n) { --ritmo-brisa: 7s; --fase-brisa: -3s; }
+.flor-tres, .flor-decorativa:nth-child(3n + 1) { --ritmo-brisa: 5.5s; --fase-brisa: -4s; }
+.flor-cuatro, .flor-decorativa:nth-child(3n + 2) { --ritmo-brisa: 8s; --fase-brisa: -2s; }
+#regalo.activa .vegetacion,
+#regalo.activa .flor-visual svg,
+#regalo.activa .flor-decorativa svg { animation-play-state: running; }
+@keyframes brisa-jardin {
+  0%, 100% { transform: rotate(-.6deg); }
+  50% { transform: rotate(.6deg); }
+}
+@keyframes brisa-petalos {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
 .tallo-jardin { fill: none; stroke-linecap: round; }
 .planta { opacity: 0; }
 .jardin.florecido .planta { animation: aparecer-planta 1.6s var(--espera) both; }
@@ -263,4 +321,5 @@ button:focus-visible { outline: 2px solid #ead5ff; outline-offset: 5px; }
 @media (prefers-reduced-motion: reduce) {
   :root { --transicion: 0ms; }
   *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; transition-duration: 0ms !important; }
+  .estrella, .vegetacion, .flor-visual svg, .flor-decorativa svg { animation: none !important; }
 }

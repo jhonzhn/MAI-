@@ -1,12 +1,10 @@
 # Un jardín para ti
 
-El recorrido está dividido en siete páginas HTML independientes. Cada una tiene su propio archivo CSS y JavaScript; `common.css` reúne la base visual compartida para que todo conserve el mismo estilo.
+El proyecto está ordenado por tipo de archivo:
+- `html/`: la portada y las seis escenas siguientes.
+- `css/`: estilos individuales para cada escena y `common.css` con la base visual compartida.
+- `js/`: un archivo JavaScript por escena.
 
-## Recorrido
-- `index.html` → `carta.html` → `flores.html` → `pausa.html` → `constelacion.html` → `recuerdos.html` → `abrazo.html`
-- Usa los botones para avanzar y volver; también funcionan las flechas del teclado.
-- Añade un archivo `music.mp3` en la raíz del proyecto para que funcione el reproductor de la última página.
-- Cambia los textos de ejemplo en `recuerdos.html` por fotos o recuerdos que ella quiera compartir.
+El `index.html` de la raíz redirige a `html/index.html` para que GitHub Pages abra el recorrido desde la dirección principal del repositorio. Las páginas enlazan entre sí con botones de avanzar y volver.
 
-## Publicar con GitHub Pages
-En **Settings → Pages**, selecciona **Deploy from a branch**, la rama `main` y la carpeta `/(root)`.
+Para activar la música, coloca `music.mp3` en la raíz del proyecto. Puedes personalizar los textos del álbum en `html/recuerdos.html`.

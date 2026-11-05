@@ -1,13 +1,12 @@
 # Un jardín para ti
 
-Una experiencia interactiva de siete escenas de cariño: una carta, flores con mensajes, una constelación de palabras, un álbum personalizable y un cierre con música. Adaptada a teléfonos y escritorio.
+El recorrido está dividido en siete páginas HTML independientes. Cada una tiene su propio archivo CSS y JavaScript; `common.css` reúne la base visual compartida para que todo conserve el mismo estilo.
 
-## Música
-Coloca un MP3 llamado `music.mp3` en la raíz del proyecto. La persona que visita la página puede reproducir o pausar la canción desde el control superior o el reproductor final. La reproducción empieza solo después de tocar un botón.
-
-## Personalizar el álbum
-En `index.html`, busca la sección `memory-album`. Allí puedes cambiar los textos de ejemplo y añadir fotos que ambos quieran recordar.
+## Recorrido
+- `index.html` → `carta.html` → `flores.html` → `pausa.html` → `constelacion.html` → `recuerdos.html` → `abrazo.html`
+- Usa los botones para avanzar y volver; también funcionan las flechas del teclado.
+- Añade un archivo `music.mp3` en la raíz del proyecto para que funcione el reproductor de la última página.
+- Cambia los textos de ejemplo en `recuerdos.html` por fotos o recuerdos que ella quiera compartir.
 
 ## Publicar con GitHub Pages
-La carpeta raíz del repositorio contiene `index.html`, `style.css` y `script.js`. En GitHub ve a **Settings → Pages**, elige **Deploy from a branch**, selecciona `main` y `/(root)`, y guarda.
-
+En **Settings → Pages**, selecciona **Deploy from a branch**, la rama `main` y la carpeta `/(root)`.

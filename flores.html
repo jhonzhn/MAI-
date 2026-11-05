@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <title>Un jardín para ti · flores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="flores.css">
+  <script src="flores.js" defer></script>
+</head>
+<body class="scene-3">
+  <div class="night-sky" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div id="petals" aria-hidden="true"></div>
+  <audio id="music" loop preload="none"><source src="music.mp3" type="audio/mpeg"></audio>
+  <main>
+<section class="page active" id="page3">
+      <div class="page-content garden-scene">
+        <div class="eyebrow">FLORES PARA ALEGRARTE EL DÍA</div>
+        <h2>Pequeñas cosas<br>que me encantan de ti</h2>
+        <p class="page active-intro">Toca una flor. Cada una guarda unas palabras que quería regalarte.</p>
+        <div class="flower-cards">
+          <button class="flower-card" data-note="smile"><span class="flower-emoji">🌻</span><strong>Tu sonrisa</strong><small>esa luz tan tuya</small></button>
+          <button class="flower-card" data-note="being"><span class="flower-emoji">🌷</span><strong>Tu forma de ser</strong><small>única, así como eres</small></button>
+          <button class="flower-card" data-note="heart"><span class="flower-emoji">🌼</span><strong>Tu corazón</strong><small>lo bonito que das</small></button>
+          <button class="flower-card" data-note="details"><span class="flower-emoji">🪻</span><strong>Tus detalles</strong><small>hasta los pequeñitos</small></button>
+        </div>
+        <a class="next-button" href="pausa.html">Un lugar tranquilo <span>→</span></a>
+      </div>
+    <a class="previous-link" href="carta.html">← Volver</a></section>
+  </main>
+  <div class="garden-floor" id="gardenFloor" aria-hidden="true"></div>
+  <div class="modal" id="noteModal" aria-hidden="true"><div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="closeModal" aria-label="Cerrar">×</button><div class="modal-flower" id="modalFlower">✿</div><div class="eyebrow">UNA NOTITA PARA TI</div><h2 id="modalTitle">Un mensajito</h2><p id="modalText"></p><button class="modal-ok" id="modalOkay">Guardar en el corazón ♡</button></div></div>
+</body>
+</html>
+

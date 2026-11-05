@@ -1,0 +1,5 @@
+/* Estilos propios de la escena: constelacion. */
+a.next-button { display: inline-block; text-decoration: none; }
+.previous-link { position: fixed; z-index: 20; bottom: 55px; left: 50%; color: #aaa7b9; font-size: 11px; text-decoration: none; transform: translateX(-50%); }
+.previous-link:hover { color: #f0cb78; }
+body.scene-5 .page { background: radial-gradient(ellipse at 75% 48%, #202b50a8 0, transparent 39%), linear-gradient(135deg, #0b1020, #10152b 55%, #0a1020); }

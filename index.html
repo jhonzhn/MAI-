@@ -78,13 +78,46 @@
       </div>
     </section>
 
-    <section class="page" id="page5" aria-hidden="true">
+    <section class="page constellation-page" id="page5" aria-hidden="true">
+      <div class="page-content constellation-content">
+        <div class="eyebrow">UN PEDACITO DE CIELO PARA TI</div>
+        <h2>Si miras arriba,<br>hay luz por todas partes.</h2>
+        <p class="page-intro">Toca las estrellitas; cada una guarda algo bonito que quería decirte.</p>
+        <div class="constellation" aria-label="Constelación con mensajes">
+          <svg viewBox="0 0 600 300" aria-hidden="true"><path d="M82 190 190 90 290 178 395 76 510 166M190 90 218 248 290 178 395 76 423 244"/></svg>
+          <button class="star-button star-a" data-star="one" aria-label="Abrir mensaje de la primera estrella">✦</button>
+          <button class="star-button star-b" data-star="two" aria-label="Abrir mensaje de la segunda estrella">✧</button>
+          <button class="star-button star-c" data-star="three" aria-label="Abrir mensaje de la tercera estrella">✦</button>
+          <button class="star-button star-d" data-star="four" aria-label="Abrir mensaje de la cuarta estrella">✧</button>
+          <button class="star-button star-e" data-star="five" aria-label="Abrir mensaje de la quinta estrella">✦</button>
+          <button class="star-button star-f" data-star="six" aria-label="Abrir mensaje de la sexta estrella">✧</button>
+        </div>
+        <button class="next-button" data-next>Unos recuerdos bonitos <span>→</span></button>
+      </div>
+    </section>
+
+    <section class="page album-page" id="page6" aria-hidden="true">
+      <div class="page-content album-content">
+        <div class="eyebrow">UN MINI ÁLBUM PARA LLENAR</div>
+        <h2>Momentitos que<br>merecen quedarse.</h2>
+        <p class="page-intro">Aquí puedes poner fotos o recuerdos de ustedes que a ella le guste volver a mirar.</p>
+        <div class="memory-album">
+          <label class="memory-card memory-one"><span class="memory-placeholder">✿</span><strong>Un día que quieras guardar</strong><small>Agrega una foto o una fecha especial</small></label>
+          <label class="memory-card memory-two"><span class="memory-placeholder">☾</span><strong>Una risa de ustedes</strong><small>Un momento que te haga sonreír</small></label>
+          <label class="memory-card memory-three"><span class="memory-placeholder">✧</span><strong>Un detalle pequeñito</strong><small>Algo sencillo que recuerdes con cariño</small></label>
+        </div>
+        <button class="next-button" data-next>Quiero dejarte un abrazo <span>→</span></button>
+      </div>
+    </section>
+    <section class="page" id="page7" aria-hidden="true">
       <div class="page-content final-layout">
         <div class="final-bloom" aria-hidden="true"><div class="glow"></div><span>♡</span><i>✿</i><b>✧</b><em>❋</em></div>
-        <div class="final-copy"><div class="eyebrow">Y PARA CERRAR, UN ABRAZO</div><h2>El cariño bonito<br>se queda <span>floreciendo.</span></h2><article class="final-letter"><p>A veces las personas que queremos dejan en nosotros cosas que siguen creciendo: una frase, una risa, una forma de mirar el mundo.</p><p>Si hoy extrañas a alguien, ojalá los recuerdos amables te hagan compañía cuando tú quieras volver a ellos.</p><p class="handwritten">Y para ti: no estás sola. Me importas mucho. <span>♡</span></p></article><button class="home-button" id="restartButton">↶ Volver a pasear por el jardín</button></div>
+        <div class="final-copy"><div class="eyebrow">Y PARA CERRAR, UN ABRAZO</div><h2>El cariño bonito<br>se queda <span>floreciendo.</span></h2><article class="final-letter"><p>A veces las personas que queremos dejan en nosotros cosas que siguen creciendo: una frase, una risa, una forma de mirar el mundo.</p><p>Si hoy extrañas a alguien, ojalá los recuerdos amables te hagan compañía cuando tú quieras volver a ellos.</p><p class="handwritten">Y para ti: no estás sola. Me importas mucho. <span>♡</span></p></article><div class="closing-player"><span class="player-flower">♫</span><div><strong>Una canción tranquila</strong><small>ponla si te apetece; puedes pausarla cuando quieras</small></div><button class="player-action" id="finalMusicButton">▶ Escuchar</button></div><button class="home-button" id="restartButton">↶ Volver a pasear por el jardín</button></div>
       </div>
     </section>
   </main>
+
+  <div class="garden-floor" id="gardenFloor" aria-hidden="true"></div>
 
   <footer class="site-footer"><span>un detalle pequeño, con todo mi cariño</span><div class="page-dots" id="pageDots" aria-hidden="true"></div></footer>
 
@@ -100,3 +133,5 @@
   </div>
 </body>
 </html>
+
+

@@ -1,10 +1,5 @@
-# Un jardín para ti
+# Una flor para ti
 
-El proyecto está ordenado por tipo de archivo:
-- `html/`: la portada y las seis escenas siguientes.
-- `css/`: estilos individuales para cada escena y `common.css` con la base visual compartida.
-- `js/`: un archivo JavaScript por escena.
+El proyecto parte de tres archivos: `index.html`, `style.css` y `script.js`.
 
-El `index.html` de la raíz redirige a `html/index.html` para que GitHub Pages abra el recorrido desde la dirección principal del repositorio. Las páginas enlazan entre sí con botones de avanzar y volver.
-
-Para activar la música, coloca `music.mp3` en la raíz del proyecto. Puedes personalizar los textos del álbum en `html/recuerdos.html`.
+La primera pantalla muestra la flor inicial. Al tocarla, caen pétalos y aparece la segunda pantalla con el ramo animado y los mensajes.

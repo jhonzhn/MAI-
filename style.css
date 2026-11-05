@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
+
+:root {
+  color-scheme: dark;
+  --fondo: #07050d;
+  --lila: #c99aff;
+  --texto: #f5eafc;
+  --transicion: 1200ms;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  overflow: hidden;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: "DM Sans", sans-serif;
+}
+button { font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+button:focus-visible { outline: 2px solid #ead5ff; outline-offset: 5px; }
+
+/* Las dos pantallas comparten un fondo para que el fundido sea continuo. */
+.pantalla {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 60%, #7039a42b, transparent 55%), var(--fondo);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px) scale(1.012);
+  transition:
+    opacity var(--transicion) cubic-bezier(.22, .61, .36, 1),
+    transform var(--transicion) cubic-bezier(.22, .61, .36, 1),
+    visibility 0s linear var(--transicion);
+}
+.pantalla.activa {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition-delay: 0s;
+}
+.pantalla[inert] { pointer-events: none; }
+
+/* La flor inicial conserva su tamaño y permanece quieta. */
+.flor-inicial {
+  width: min(90vw, 390px);
+  height: min(80svh, 500px);
+  padding: 0;
+  border: 0;
+  border-radius: 24px;
+  background: transparent;
+  filter: drop-shadow(0 0 28px #ab6fff33);
+}
+.rosa { width: 100%; height: 100%; overflow: visible; }
+.tallo { fill: none; stroke: #719769; stroke-width: 4; stroke-linecap: round; }
+.hoja { fill: url(#tallo); }
+.petalo { transition: filter .3s; }
+.flor-inicial:hover .petalo { filter: brightness(1.1); }
+.petalo-caido {
+  position: fixed;
+  z-index: 10;
+  width: 9px;
+  height: 17px;
+  border-radius: 90% 8% 85% 12%;
+  background: linear-gradient(135deg, #f3e3ff, #c99aff 45%, #7743b0);
+  pointer-events: none;
+}
+
+/* Jardín: tallos del fondo, flores pequeñas y cuatro flores protagonistas. */
+.luz-jardin {
+  position: absolute;
+  inset: 18% 5% 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 80%, #9468ba1b, transparent 65%);
+}
+.invitacion {
+  position: absolute;
+  top: max(6svh, env(safe-area-inset-top));
+  z-index: 4;
+  margin: 0;
+  padding: 0 24px;
+  text-align: center;
+  color: #eddcf9;
+  font: 400 clamp(20px, 2.3vw, 29px)/1.4 "Playfair Display", serif;
+  outline: none;
+}
+.invitacion span {
+  display: block;
+  margin-top: 10px;
+  color: #a294ad;
+  font: 400 11px/1.5 "DM Sans", sans-serif;
+  letter-spacing: .06em;
+}
+.jardin {
+  position: absolute;
+  bottom: 0;
+  width: min(100%, 1180px);
+  height: 79svh;
+  min-height: 270px;
+}
+.tallos-jardin, .flores-decorativas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.tallos-jardin { overflow: visible; }
+.tallo-jardin { fill: none; stroke-linecap: round; }
+.planta { opacity: 0; }
+.jardin.florecido .planta { animation: aparecer-planta 1.6s var(--espera) both; }
+.flor-decorativa {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--tamano);
+  aspect-ratio: 1.2;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.8) rotate(var(--giro));
+  filter: saturate(.65) brightness(.76);
+}
+.flor-decorativa svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.jardin.florecido .flor-decorativa { animation: abrir-fondo 1.5s var(--espera) both; }
+.suelo {
+  position: absolute;
+  inset: auto -8% -40px;
+  height: 165px;
+  border-radius: 50% 50% 0 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse, #14221bdb, #090d0bde 50%, transparent 72%);
+}
+.flor-principal {
+  position: absolute;
+  z-index: 3;
+  left: var(--x);
+  top: var(--y);
+  width: clamp(125px, 15vw, 170px);
+  aspect-ratio: 1.2;
+  border: 0;
+  padding: 0;
+  border-radius: 45%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  touch-action: manipulation;
+}
+.flor-uno { --x: 20%; --y: 38%; --espera: .28s; }
+.flor-dos { --x: 40%; --y: 21%; --espera: .48s; }
+.flor-tres { --x: 61%; --y: 27%; --espera: .68s; }
+.flor-cuatro { --x: 81%; --y: 43%; --espera: .88s; }
+.jardin.florecido .flor-principal { animation: abrir-principal 1.45s var(--espera) both; }
+.flor-visual {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 16px #c897ff4d);
+  transition: transform .4s, filter .4s;
+}
+.flor-visual svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.flor-principal:hover .flor-visual,
+.flor-principal:focus-visible .flor-visual {
+  transform: translateY(-4px) scale(1.06);
+  filter: drop-shadow(0 0 22px #d5aeff88);
+}
+.flor-nombre {
+  position: absolute;
+  top: calc(100% - 3px);
+  left: 50%;
+  width: max-content;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: #e0c8f5;
+  background: #0c0712b5;
+  font-size: 10px;
+  letter-spacing: .04em;
+}
+.flor-principal.leida .flor-nombre::after { content: " · ♡"; color: #d1addd; }
+.volver {
+  position: absolute;
+  bottom: max(21px, env(safe-area-inset-bottom));
+  z-index: 4;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid #cda4ff38;
+  border-radius: 99px;
+  background: #0a070fba;
+  color: #c7b5d7;
+  font-size: 11px;
+}
+.volver:hover { background: #ae70ff20; }
+
+/* Solo el mensaje elegido aparece sobre el jardín. */
+.mensaje-modal {
+  position: fixed;
+  width: min(440px, calc(100vw - 32px));
+  max-height: calc(100dvh - 40px);
+  margin: auto;
+  overflow-y: auto;
+  border: 1px solid #dbc4f04d;
+  border-radius: 24px;
+  padding: 36px 30px 28px;
+  background: radial-gradient(ellipse at top, #30203d, #140e1d 75%);
+  box-shadow: 0 24px 90px #0009;
+  color: var(--texto);
+  text-align: center;
+}
+.mensaje-modal[open] { animation: mostrar-nota .35s ease both; }
+.mensaje-modal::backdrop { background: #030109b5; backdrop-filter: blur(7px); }
+.cerrar-mensaje {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #c8b9d8;
+  font-size: 27px;
+}
+.detalle-mensaje { display: block; margin-bottom: 14px; color: #cfaff0; font-size: 36px; }
+.etiqueta { margin: 0 0 13px; color: #cbb0e1; font-size: 9px; letter-spacing: .17em; }
+.mensaje-modal h1 { margin: 0 0 16px; font: 400 clamp(25px, 6vw, 32px)/1.25 "Playfair Display", serif; }
+.texto-mensaje { margin: 0; color: #ddd0e7; font-size: 14px; line-height: 1.85; }
+.guardar-mensaje { margin-top: 24px; min-height: 44px; border: 1px solid #d4b5ed55; border-radius: 24px; padding: 10px 17px; background: #b78ed41a; color: #ead6fa; font-size: 12px; }
+
+@keyframes aparecer-planta {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes abrir-fondo {
+  from { opacity: 0; transform: translate(-50%, calc(-50% + 18px)) scale(.8) rotate(var(--giro)); }
+  to { opacity: var(--opacidad); transform: translate(-50%, -50%) scale(1) rotate(var(--giro)); }
+}
+@keyframes abrir-principal {
+  from { opacity: 0; transform: translate(-50%, calc(-50% + 16px)) scale(.88); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes mostrar-nota {
+  from { opacity: 0; transform: translateY(10px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 600px) {
+  .invitacion { top: 6svh; font-size: 22px; }
+  .invitacion span { max-width: 260px; margin: 8px auto 0; font-size: 10px; }
+  .jardin { height: 80svh; }
+  .flor-principal { width: clamp(105px, 29vw, 143px); }
+  .flor-uno { --x: 26%; --y: 21%; }
+  .flor-dos { --x: 73%; --y: 31%; }
+  .flor-tres { --x: 28%; --y: 49%; }
+  .flor-cuatro { --x: 73%; --y: 60%; }
+  .flor-decorativa { width: calc(var(--tamano) * .72); }
+  .flor-nombre { font-size: 10px; }
+  .mensaje-modal { padding: 34px 23px 25px; }
+}
+@media (max-height: 480px) and (orientation: landscape) {
+  .invitacion { top: 15px; font-size: 18px; }
+  .invitacion span { margin-top: 3px; }
+  .jardin { height: 74svh; min-height: 0; }
+  .flor-principal { width: 92px; }
+  .volver { bottom: 8px; min-height: 34px; padding: 5px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --transicion: 0ms; }
+  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; transition-duration: 0ms !important; }
+}

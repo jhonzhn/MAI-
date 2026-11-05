@@ -1,7 +1,359 @@
-/* Estilos propios de la escena: inicio. */
-a.next-button { display: inline-block; text-decoration: none; }
-.previous-link { position: fixed; z-index: 20; bottom: 55px; left: 50%; color: #aaa7b9; font-size: 11px; text-decoration: none; transform: translateX(-50%); }
-.previous-link:hover { color: #f0cb78; }
-body.scene-1 .page { background: radial-gradient(ellipse at 75% 48%, #202b50a8 0, transparent 39%), linear-gradient(135deg, #0b1020, #10152b 55%, #0a1020); }
-body.scene-1 .night-sky, body.scene-1 .garden-floor { display: none; }
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
+
+:root {
+  --negro: #030204;
+  --lila: #c99aff;
+  --lila-claro: #f0dfff;
+  --verde: #628a5c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--negro);
+  color: #f8efff;
+  font-family: "DM Sans", sans-serif;
+  overflow: hidden;
+}
+
+.pantalla {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 60%,
+      rgba(112, 57, 164, .17), transparent 40%),
+    #030204;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s;
+}
+
+.pantalla.activa {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* PRIMERA PANTALLA */
+
+.flor-inicial {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(85vw, 340px);
+  height: min(75vh, 440px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 28px rgba(171, 111, 255, .2));
+}
+
+.rosa {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: respirar 4s ease-in-out infinite;
+}
+
+.tallo {
+  fill: none;
+  stroke: #719769;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.hoja {
+  fill: url(#tallo);
+  transform-box: fill-box;
+  transform-origin: 0% 100%;
+  animation: hojaViva 3s ease-in-out infinite alternate;
+}
+
+.petalo {
+  transform-box: fill-box;
+  transform-origin: 50% 85%;
+  transition: filter .3s;
+}
+
+.flor-inicial:hover .petalo {
+  filter: brightness(1.2);
+}
+
+/* PÉTALOS QUE CAEN */
+
+.petalo-caido {
+  position: fixed;
+  z-index: 10;
+  width: var(--ancho);
+  height: var(--alto);
+  border-radius: 90% 8% 85% 12%;
+  background: linear-gradient(
+    135deg, #f3e3ff, #c99aff 45%, #7743b0
+  );
+  box-shadow: 0 0 12px rgba(190, 135, 255, .3);
+  pointer-events: none;
+  animation: caer var(--duracion) ease-in forwards;
+}
+
+/* SEGUNDA PANTALLA */
+
+.resplandor {
+  position: absolute;
+  bottom: 3%;
+  width: 70vw;
+  height: 120px;
+  border-radius: 50%;
+  background: #9b5be8;
+  filter: blur(70px);
+  opacity: .22;
+}
+
+.ramo {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  width: min(95vw, 650px);
+  height: 76vh;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.tallo-ramo {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  width: 4px;
+  height: 0;
+  background: linear-gradient(90deg, #35533a, #a3c98b, #35533a);
+  border-radius: 100%;
+  transform-origin: bottom;
+  transform: rotate(var(--inclinacion));
+  animation: crecer 1.5s var(--espera) ease-out forwards;
+}
+
+.flor-ramo {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--tamano);
+  height: var(--tamano);
+  opacity: 0;
+  transform: translate(-50%, 30%) scale(.1);
+  filter: drop-shadow(0 0 13px rgba(184, 129, 255, .15));
+  animation: abrirFlor 1.2s var(--espera) ease-out forwards;
+}
+
+.flor-ramo svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hoja-ramo {
+  position: absolute;
+  bottom: var(--base);
+  left: 50%;
+  width: 34px;
+  height: 17px;
+  background: linear-gradient(135deg, #a6ca8b, #466e4b);
+  border-radius: 0 100% 0 100%;
+  transform: rotate(var(--giro)) scale(0);
+  transform-origin: 0% 100%;
+  animation: abrirHoja .7s var(--espera) ease-out forwards;
+}
+
+.papel {
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  width: 48%;
+  height: 38%;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: bottom;
+  background: linear-gradient(
+    110deg,
+    rgba(214, 177, 255, .15),
+    rgba(121, 69, 165, .32),
+    rgba(231, 203, 255, .12)
+  );
+  clip-path: polygon(12% 0, 88% 0, 100% 100%, 50% 78%, 0 100%);
+  border: 1px solid rgba(225, 197, 255, .22);
+  animation: subirPapel 1s 2.4s forwards;
+  z-index: 3;
+}
+
+.lazo {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  width: 70px;
+  height: 30px;
+  border-radius: 50%;
+  border: 5px solid #ad79e8;
+  transform: translateX(-50%) scale(0);
+  animation: aparecer .5s 3s forwards;
+  z-index: 4;
+}
+
+/* TARJETAS TRANSLÚCIDAS */
+
+.mensajes {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  padding: 30px 20px 70px;
+  pointer-events: none;
+}
+
+.tarjeta {
+  width: min(100%, 460px);
+  padding: 18px 21px;
+  border: 1px solid rgba(222, 192, 255, .24);
+  border-radius: 17px;
+  background: rgba(21, 12, 29, .64);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .2);
+  opacity: 0;
+  transform: translateY(18px);
+  animation: mostrarTarjeta .8s var(--espera) forwards;
+  pointer-events: auto;
+}
+
+.tarjeta-principal {
+  text-align: center;
+  padding: 23px;
+}
+
+.tarjeta:nth-child(1) { --espera: 2.7s; }
+.tarjeta:nth-child(2) { --espera: 3s; }
+.tarjeta:nth-child(3) { --espera: 3.3s; }
+.tarjeta:nth-child(4) { --espera: 3.6s; }
+
+.etiqueta {
+  display: block;
+  margin-bottom: 10px;
+  font-size: .62rem;
+  letter-spacing: .22em;
+  color: #d4b3f6;
+}
+
+.tarjeta h1 {
+  margin: 0 0 10px;
+  font: 400 clamp(1.7rem, 4vw, 2.4rem)/1.15
+    "Playfair Display", serif;
+}
+
+.tarjeta h1 em {
+  color: var(--lila);
+}
+
+.tarjeta p {
+  margin: 0;
+  color: #e1d4eb;
+  font-size: .88rem;
+  line-height: 1.7;
+}
+
+.corazon {
+  display: block;
+  margin-top: 12px;
+  color: #d3a8ff;
+  font-size: 1.3rem;
+}
+
+.volver {
+  position: absolute;
+  bottom: 17px;
+  border: 1px solid rgba(205, 164, 255, .38);
+  border-radius: 99px;
+  padding: 11px 18px;
+  color: #ead9ff;
+  background: rgba(20, 10, 29, .85);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.volver:hover {
+  background: rgba(174, 112, 255, .18);
+}
+
+/* ANIMACIONES */
+
+@keyframes respirar {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-9px) rotate(1deg); }
+}
+
+@keyframes hojaViva {
+  from { rotate: -3deg; }
+  to { rotate: 4deg; }
+}
+
+@keyframes caer {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0) scale(.5);
+  }
+  15% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy))
+      rotate(var(--giro-final)) scale(1);
+  }
+}
+
+@keyframes crecer {
+  to { height: var(--altura); }
+}
+
+@keyframes abrirFlor {
+  0% { opacity: 0; transform: translate(-50%, 30%) scale(.1); }
+  65% { opacity: 1; transform: translate(-50%, -5%) scale(1.1); }
+  100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+@keyframes abrirHoja {
+  to { transform: rotate(var(--giro)) scale(1); }
+}
+
+@keyframes subirPapel {
+  to { transform: translateX(-50%) scaleY(1); }
+}
+
+@keyframes aparecer {
+  to { transform: translateX(-50%) scale(1); }
+}
+
+@keyframes mostrarTarjeta {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 560px) {
+  .ramo { width: 120vw; height: 70vh; }
+  .mensajes { gap: 9px; padding-inline: 17px; }
+  .tarjeta { padding: 14px 16px; }
+  .tarjeta-principal { padding: 19px 13px; }
+  .tarjeta p { font-size: .8rem; }
+  .tarjeta:nth-child(4) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}

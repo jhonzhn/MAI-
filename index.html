@@ -1,13 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=html/index.html">
-  <title>Un jardín para ti</title>
-  <script>window.location.replace('html/index.html');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#07050d">
+  <title>Una flor para ti</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <p>Abriendo <a href="html/index.html">Un jardín para ti</a>…</p>
+  <main>
+    <!-- La portada conserva la flor de la base, quieta y centrada. -->
+    <section id="inicio" class="pantalla activa" aria-label="Una flor para ti">
+      <button id="florInicial" class="flor-inicial" aria-label="Entrar al jardín">
+        <svg viewBox="0 0 200 300" class="rosa" aria-hidden="true">
+          <defs>
+            <radialGradient id="lila" cx="30%" cy="20%" r="85%">
+              <stop offset="0%" stop-color="#f4e4ff"/>
+              <stop offset="38%" stop-color="#d0a0ff"/>
+              <stop offset="72%" stop-color="#a56be8"/>
+              <stop offset="100%" stop-color="#592b83"/>
+            </radialGradient>
+            <linearGradient id="tallo" x2="1">
+              <stop stop-color="#385b3c"/>
+              <stop offset=".5" stop-color="#a4c98a"/>
+              <stop offset="1" stop-color="#385b3c"/>
+            </linearGradient>
+          </defs>
+          <path class="tallo" d="M100 270 Q85 215 101 155"/>
+          <path class="hoja" d="M94 225 Q46 213 44 178 Q82 180 94 225Z"/>
+          <path class="hoja" d="M98 244 Q134 208 160 226 Q136 254 98 244Z"/>
+          <g class="corola">
+            <path class="petalo" d="M100 155 C45 177 18 126 43 88 C60 62 83 79 100 104Z" fill="url(#lila)"/>
+            <path class="petalo" d="M100 155 C155 177 182 126 157 88 C140 62 117 79 100 104Z" fill="url(#lila)"/>
+            <path class="petalo" d="M100 142 C48 131 59 65 92 54 C119 47 133 76 115 111Z" fill="#c394f8"/>
+            <path class="petalo" d="M100 142 C152 131 141 65 108 54 C81 47 67 76 85 111Z" fill="#e1c4ff"/>
+            <path class="petalo" d="M100 145 C67 125 80 87 101 94 C126 84 141 119 100 145Z" fill="#b47be9"/>
+            <path class="petalo" d="M100 135 C82 117 99 101 111 111 C123 121 108 137 100 135Z" fill="#71419d"/>
+            <path d="M98 125 Q103 111 112 116" stroke="#f5e8ff" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </button>
+    </section>
+
+    <!-- Cuatro flores con mensajes entre un jardín de flores decorativas. -->
+    <section id="regalo" class="pantalla" aria-label="Jardín de mensajes" aria-hidden="true" inert>
+      <div class="luz-jardin" aria-hidden="true"></div>
+      <p id="invitacion" class="invitacion" tabindex="-1">
+        Cada flor guarda algo para ti.
+        <span>Toca una de las cuatro flores luminosas</span>
+      </p>
+
+      <div id="ramo" class="jardin">
+        <svg id="tallosJardin" class="tallos-jardin" viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div id="floresDecorativas" class="flores-decorativas" aria-hidden="true"></div>
+
+        <button class="flor-principal flor-uno" data-mensaje="0" aria-label="Abrir mensaje: un detalle para ti" aria-haspopup="dialog">
+          <span class="flor-visual" aria-hidden="true"></span>
+          <span class="flor-nombre">Un detalle</span>
+        </button>
+        <button class="flor-principal flor-dos" data-mensaje="1" aria-label="Abrir mensaje: lo que quería decirte" aria-haspopup="dialog">
+          <span class="flor-visual" aria-hidden="true"></span>
+          <span class="flor-nombre">Para ti</span>
+        </button>
+        <button class="flor-principal flor-tres" data-mensaje="2" aria-label="Abrir mensaje: un deseo" aria-haspopup="dialog">
+          <span class="flor-visual" aria-hidden="true"></span>
+          <span class="flor-nombre">Un deseo</span>
+        </button>
+        <button class="flor-principal flor-cuatro" data-mensaje="3" aria-label="Abrir mensaje: con cariño" aria-haspopup="dialog">
+          <span class="flor-visual" aria-hidden="true"></span>
+          <span class="flor-nombre">Con cariño</span>
+        </button>
+        <div class="suelo" aria-hidden="true"></div>
+      </div>
+      <button id="volver" class="volver">↶ Volver a la flor</button>
+    </section>
+  </main>
+
+  <dialog id="mensajeModal" class="mensaje-modal" aria-labelledby="tituloMensaje" aria-describedby="textoMensaje">
+    <button id="cerrarMensaje" class="cerrar-mensaje" aria-label="Cerrar mensaje">×</button>
+    <span class="detalle-mensaje" aria-hidden="true">❀</span>
+    <p id="etiquetaMensaje" class="etiqueta"></p>
+    <h1 id="tituloMensaje"></h1>
+    <p id="textoMensaje" class="texto-mensaje"></p>
+    <button id="guardarMensaje" class="guardar-mensaje">Volver al jardín ♡</button>
+  </dialog>
 </body>
 </html>
